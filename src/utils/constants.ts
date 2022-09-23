@@ -74,7 +74,10 @@ export const NetworkIDToHRP: object = {
   4: "everest",
   5: "fuji",
   1337: "custom",
-  12345: "local"
+  12345: "local",
+  162: "localflare",
+  14: "flare",
+  114: "coston2"
 }
 
 export const HRPToNetworkID: object = {
@@ -85,7 +88,10 @@ export const HRPToNetworkID: object = {
   everest: 4,
   fuji: 5,
   custom: 1337,
-  local: 12345
+  local: 12345,
+  localflare: 162,
+  flare: 14,
+  coston2: 114
 }
 
 export const NetworkIDToNetworkNames: object = {
@@ -96,7 +102,10 @@ export const NetworkIDToNetworkNames: object = {
   4: ["Everest"],
   5: ["Fuji", "Testnet"],
   1337: ["Custom Network"],
-  12345: ["Local Network"]
+  12345: ["Local Network"],
+  162: ["Local Flare"],
+  14: ["Flare"],
+  114: ["Coston 2"]
 }
 
 export const NetworkNameToNetworkID: object = {
@@ -111,7 +120,10 @@ export const NetworkNameToNetworkID: object = {
   Custom: 1337,
   "Custom Network": 1337,
   Local: 12345,
-  "Local Network": 12345
+  "Local Network": 12345,
+  "Local Flare": 162,
+  "Flare": 14,
+  "Coston 2": 114
 }
 
 export const FallbackHRP: string = "custom"
@@ -437,6 +449,96 @@ n12345C.avaxAssetID = avaxAssetID
 n12345C.chainID = 43112
 // End local network
 
+// Start local flare
+avaxAssetID = "QJx3BomP9MGxCy5RPVXyNUeEqzduvuNbxQVXMuPKDakacdY6K"
+const n6X: X = {
+  blockchainID: "qG35QGqZ11Mvh8CxCmVVi22juDH3d4GXYFyLeX3W3aWLXWnVb",
+  avaxAssetID: avaxAssetID,
+  alias: XChainAlias,
+  vm: XChainVMName,
+  txFee: MILLIAVAX,
+  creationTxFee: CENTIAVAX,
+  mintTxFee: MILLIAVAX
+}
+
+const n6P: P = {
+  blockchainID: PlatformChainID,
+  avaxAssetID: avaxAssetID,
+  alias: PChainAlias,
+  vm: PChainVMName,
+  txFee: MILLIAVAX,
+  creationTxFee: CENTIAVAX,
+  createSubnetTx: ONEAVAX,
+  createChainTx: ONEAVAX,
+  minConsumption: 0.1,
+  maxConsumption: 0.12,
+  maxStakingDuration: new BN(31536000),
+  maxSupply: new BN(720000000).mul(ONEAVAX),
+  minStake: ONEAVAX,
+  minStakeDuration: 24 * 60 * 60, //one day
+  maxStakeDuration: 365 * 24 * 60 * 60, // one year
+  minDelegationStake: ONEAVAX,
+  minDelegationFee: new BN(2)
+}
+
+const n6C: C = {
+  blockchainID: "XXxqsUPAm5EU7PhesFidC1guJa9jpf2jMq5bvKpco7QCQ5gpW",
+  alias: CChainAlias,
+  vm: CChainVMName,
+  txBytesGas: 1,
+  costPerSignature: 100,
+  gasPrice: GWEI.mul(new BN(225)),
+  minGasPrice: GWEI.mul(new BN(25)),
+  maxGasPrice: GWEI.mul(new BN(1000)),
+  chainID: 162
+}
+// end local flare
+
+// start flare
+avaxAssetID = "QJx3BomP9MGxCy5RPVXyNUeEqzduvuNbxQVXMuPKDakacdY6K"
+const n7X: X = {
+  blockchainID: "qG35QGqZ11Mvh8CxCmVVi22juDH3d4GXYFyLeX3W3aWLXWnVb",
+  avaxAssetID: avaxAssetID,
+  alias: XChainAlias,
+  vm: XChainVMName,
+  txFee: MILLIAVAX,
+  creationTxFee: CENTIAVAX,
+  mintTxFee: MILLIAVAX
+}
+
+const n7P: P = {
+  blockchainID: PlatformChainID,
+  avaxAssetID: avaxAssetID,
+  alias: PChainAlias,
+  vm: PChainVMName,
+  txFee: MILLIAVAX,
+  creationTxFee: CENTIAVAX,
+  createSubnetTx: ONEAVAX,
+  createChainTx: ONEAVAX,
+  minConsumption: 0.1,
+  maxConsumption: 0.12,
+  maxStakingDuration: new BN(31536000),
+  maxSupply: new BN(720000000).mul(ONEAVAX),
+  minStake: ONEAVAX,
+  minStakeDuration: 24 * 60 * 60, //one day
+  maxStakeDuration: 365 * 24 * 60 * 60, // one year
+  minDelegationStake: ONEAVAX,
+  minDelegationFee: new BN(2)
+}
+
+const n7C: C = {
+  blockchainID: "umkbhSrjVw5nUvy1eo25AdrjRkPBdtzAMewuxA2rqEx4YMo4c",
+  alias: CChainAlias,
+  vm: CChainVMName,
+  txBytesGas: 1,
+  costPerSignature: 100,
+  gasPrice: GWEI.mul(new BN(225)),
+  minGasPrice: GWEI.mul(new BN(25)),
+  maxGasPrice: GWEI.mul(new BN(1000)),
+  chainID: 14
+}
+// end flare
+
 export class Defaults {
   static network: Networks = {
     0: {
@@ -510,6 +612,24 @@ export class Defaults {
       "11111111111111111111111111111111LpoYY": n12345P,
       C: n12345C,
       "2CA6j5zYzasynPsFeNoqWkmTCt3VScMvXUZHbfDJ8k3oGzAPtU": n12345C
+    },
+    162: {
+      hrp: NetworkIDToHRP[162],
+      X: n6X,
+      "": n6X,
+      P: n6P,
+      "11111111111111111111111111111111LpoYY": n6P,
+      C: n6C,
+      XXxqsUPAm5EU7PhesFidC1guJa9jpf2jMq5bvKpco7QCQ5gpW: n6C
+    },
+    14: {
+      hrp: NetworkIDToHRP[14],
+      X: n7X,
+      "": n7X,
+      P: n7P,
+      "11111111111111111111111111111111LpoYY": n7P,
+      C: n7C,
+      umkbhSrjVw5nUvy1eo25AdrjRkPBdtzAMewuxA2rqEx4YMo4c: n7C
     }
   }
 }

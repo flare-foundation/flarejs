@@ -368,6 +368,9 @@ export default class BinTools {
       humanReadablePart !== "fuji" &&
       humanReadablePart != "local" &&
       humanReadablePart != "custom" &&
+      humanReadablePart != "localflare" &&
+      humanReadablePart != "flare" &&
+      humanReadablePart != "coston2" &&
       humanReadablePart != hrp
     ) {
       throw new Bech32Error("Error - Invalid HRP")
