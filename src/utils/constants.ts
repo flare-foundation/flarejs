@@ -77,7 +77,8 @@ export const NetworkIDToHRP: object = {
   12345: "local",
   162: "localflare",
   14: "flare",
-  114: "coston2"
+  114: "costwo",
+  7: "coston"
 }
 
 export const HRPToNetworkID: object = {
@@ -91,7 +92,8 @@ export const HRPToNetworkID: object = {
   local: 12345,
   localflare: 162,
   flare: 14,
-  coston2: 114
+  costwo: 114,
+  coston: 7
 }
 
 export const NetworkIDToNetworkNames: object = {
@@ -105,7 +107,8 @@ export const NetworkIDToNetworkNames: object = {
   12345: ["Local Network"],
   162: ["Local Flare"],
   14: ["Flare"],
-  114: ["Coston 2"]
+  114: ["Coston 2"],
+  7: ["Coston"]
 }
 
 export const NetworkNameToNetworkID: object = {
@@ -123,7 +126,8 @@ export const NetworkNameToNetworkID: object = {
   "Local Network": 12345,
   "Local Flare": 162,
   "Flare": 14,
-  "Coston 2": 114
+  "Costwo": 114,
+  "Coston": 7
 }
 
 export const FallbackHRP: string = "custom"
@@ -452,7 +456,7 @@ n12345C.chainID = 43112
 // Start local flare
 avaxAssetID = "QJx3BomP9MGxCy5RPVXyNUeEqzduvuNbxQVXMuPKDakacdY6K"
 const n6X: X = {
-  blockchainID: "qG35QGqZ11Mvh8CxCmVVi22juDH3d4GXYFyLeX3W3aWLXWnVb",
+  blockchainID: "qG35QGqZ11Mvh8CxCmVVi22juDH3d4GXYFyLeX3W3aWLXWnVb", // from go-flare node response
   avaxAssetID: avaxAssetID,
   alias: XChainAlias,
   vm: XChainVMName,
@@ -495,9 +499,9 @@ const n6C: C = {
 // end local flare
 
 // start flare
-avaxAssetID = "QJx3BomP9MGxCy5RPVXyNUeEqzduvuNbxQVXMuPKDakacdY6K"
+avaxAssetID = "2MxKSeEWXViLdYyDhW1SQ46AECZEbE2bnVRZptv42JrxqyUX5k"
 const n7X: X = {
-  blockchainID: "qG35QGqZ11Mvh8CxCmVVi22juDH3d4GXYFyLeX3W3aWLXWnVb",
+  blockchainID: "fK5e6T3EniMqagBkxXjAug9EbhFDZbEzPPr4f22uwMoP5i2cJ",
   avaxAssetID: avaxAssetID,
   alias: XChainAlias,
   vm: XChainVMName,
@@ -527,6 +531,7 @@ const n7P: P = {
 }
 
 const n7C: C = {
+  // blockchainID is sometimes referred to as chainID (it's confusing)
   blockchainID: "umkbhSrjVw5nUvy1eo25AdrjRkPBdtzAMewuxA2rqEx4YMo4c",
   alias: CChainAlias,
   vm: CChainVMName,
@@ -538,6 +543,96 @@ const n7C: C = {
   chainID: 14
 }
 // end flare
+
+// start coston
+avaxAssetID = "fxMAKpBQQpFedrUhWMsDYfCUJxdUw4mneTczKBzNg3rc2JUub"
+const n8X: X = {
+  blockchainID: "",
+  avaxAssetID: avaxAssetID,
+  alias: XChainAlias,
+  vm: XChainVMName,
+  txFee: MILLIAVAX,
+  creationTxFee: CENTIAVAX,
+  mintTxFee: MILLIAVAX
+}
+
+const n8P: P = {
+  blockchainID: PlatformChainID,
+  avaxAssetID: avaxAssetID,
+  alias: PChainAlias,
+  vm: PChainVMName,
+  txFee: MILLIAVAX,
+  creationTxFee: CENTIAVAX,
+  createSubnetTx: ONEAVAX,
+  createChainTx: ONEAVAX,
+  minConsumption: 0.1,
+  maxConsumption: 0.12,
+  maxStakingDuration: new BN(31536000),
+  maxSupply: new BN(720000000).mul(ONEAVAX),
+  minStake: ONEAVAX,
+  minStakeDuration: 24 * 60 * 60, //one day
+  maxStakeDuration: 365 * 24 * 60 * 60, // one year
+  minDelegationStake: ONEAVAX,
+  minDelegationFee: new BN(2)
+}
+
+const n8C: C = {
+  blockchainID: "2wcJd3HZL4EAoQDfGhyeHGJU55wizganSzD9EvdDLJX3B5u5Be",
+  alias: CChainAlias,
+  vm: CChainVMName,
+  txBytesGas: 1,
+  costPerSignature: 100,
+  gasPrice: GWEI.mul(new BN(225)),
+  minGasPrice: GWEI.mul(new BN(25)),
+  maxGasPrice: GWEI.mul(new BN(1000)),
+  chainID: 7
+}
+// end coston
+
+// start costwo
+avaxAssetID = "fxMAKpBQQpFedrUhWMsDYfCUJxdUw4mneTczKBzNg3rc2JUub"
+const n9X: X = {
+  blockchainID: "FJuSwZuP85eyBpuBrKECnpPedGyXoDy2hP9q4JD8qBTZGxYbJ",
+  avaxAssetID: avaxAssetID,
+  alias: XChainAlias,
+  vm: XChainVMName,
+  txFee: MILLIAVAX,
+  creationTxFee: CENTIAVAX,
+  mintTxFee: MILLIAVAX
+}
+
+const n9P: P = {
+  blockchainID: PlatformChainID,
+  avaxAssetID: avaxAssetID,
+  alias: PChainAlias,
+  vm: PChainVMName,
+  txFee: MILLIAVAX,
+  creationTxFee: CENTIAVAX,
+  createSubnetTx: ONEAVAX,
+  createChainTx: ONEAVAX,
+  minConsumption: 0.1,
+  maxConsumption: 0.12,
+  maxStakingDuration: new BN(31536000),
+  maxSupply: new BN(720000000).mul(ONEAVAX),
+  minStake: ONEAVAX,
+  minStakeDuration: 24 * 60 * 60, //one day
+  maxStakeDuration: 365 * 24 * 60 * 60, // one year
+  minDelegationStake: ONEAVAX,
+  minDelegationFee: new BN(2)
+}
+
+const n9C: C = {
+  blockchainID: "vE8M98mEQH6wk56sStD1ML8HApTgSqfJZLk9gQ3Fsd4i6m3Bi",
+  alias: CChainAlias,
+  vm: CChainVMName,
+  txBytesGas: 1,
+  costPerSignature: 100,
+  gasPrice: GWEI.mul(new BN(225)),
+  minGasPrice: GWEI.mul(new BN(25)),
+  maxGasPrice: GWEI.mul(new BN(1000)),
+  chainID: 114
+}
+// end costwo
 
 export class Defaults {
   static network: Networks = {
@@ -616,7 +711,7 @@ export class Defaults {
     162: {
       hrp: NetworkIDToHRP[162],
       X: n6X,
-      "": n6X,
+      "qG35QGqZ11Mvh8CxCmVVi22juDH3d4GXYFyLeX3W3aWLXWnVb": n6X,
       P: n6P,
       "11111111111111111111111111111111LpoYY": n6P,
       C: n6C,
@@ -625,11 +720,29 @@ export class Defaults {
     14: {
       hrp: NetworkIDToHRP[14],
       X: n7X,
-      "": n7X,
+      "fK5e6T3EniMqagBkxXjAug9EbhFDZbEzPPr4f22uwMoP5i2cJ": n7X,
       P: n7P,
       "11111111111111111111111111111111LpoYY": n7P,
       C: n7C,
       umkbhSrjVw5nUvy1eo25AdrjRkPBdtzAMewuxA2rqEx4YMo4c: n7C
+    },
+    7: {
+      hrp: NetworkIDToHRP[7],
+      X: n8X,
+      qG35QGqZ11Mvh8CxCmVVi22juDH3d4GXYFyLeX3W3aWLXWnVb: n8X,
+      P: n8P,
+      "11111111111111111111111111111111LpoYY": n8P,
+      C: n8C,
+      "2wcJd3HZL4EAoQDfGhyeHGJU55wizganSzD9EvdDLJX3B5u5Be": n8C
+    },
+    114: {
+      hrp: NetworkIDToHRP[114],
+      X: n9X,
+      FJuSwZuP85eyBpuBrKECnpPedGyXoDy2hP9q4JD8qBTZGxYbJ: n9X,
+      P: n9P,
+      "11111111111111111111111111111111LpoYY": n9P,
+      C: n9C,
+      vE8M98mEQH6wk56sStD1ML8HApTgSqfJZLk9gQ3Fsd4i6m3Bi: n9C
     }
   }
 }
