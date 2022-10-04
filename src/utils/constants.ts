@@ -78,7 +78,6 @@ export const NetworkIDToHRP: object = {
   162: "localflare",
   14: "flare",
   114: "costwo",
-  7: "coston"
 }
 
 export const HRPToNetworkID: object = {
@@ -93,7 +92,6 @@ export const HRPToNetworkID: object = {
   localflare: 162,
   flare: 14,
   costwo: 114,
-  coston: 7
 }
 
 export const NetworkIDToNetworkNames: object = {
@@ -108,7 +106,6 @@ export const NetworkIDToNetworkNames: object = {
   162: ["Local Flare"],
   14: ["Flare"],
   114: ["Coston 2"],
-  7: ["Coston"]
 }
 
 export const NetworkNameToNetworkID: object = {
@@ -127,7 +124,6 @@ export const NetworkNameToNetworkID: object = {
   "Local Flare": 162,
   "Flare": 14,
   "Costwo": 114,
-  "Coston": 7
 }
 
 export const FallbackHRP: string = "custom"
@@ -544,51 +540,6 @@ const n7C: C = {
 }
 // end flare
 
-// start coston
-avaxAssetID = "fxMAKpBQQpFedrUhWMsDYfCUJxdUw4mneTczKBzNg3rc2JUub"
-const n8X: X = {
-  blockchainID: "",
-  avaxAssetID: avaxAssetID,
-  alias: XChainAlias,
-  vm: XChainVMName,
-  txFee: MILLIAVAX,
-  creationTxFee: CENTIAVAX,
-  mintTxFee: MILLIAVAX
-}
-
-const n8P: P = {
-  blockchainID: PlatformChainID,
-  avaxAssetID: avaxAssetID,
-  alias: PChainAlias,
-  vm: PChainVMName,
-  txFee: MILLIAVAX,
-  creationTxFee: CENTIAVAX,
-  createSubnetTx: ONEAVAX,
-  createChainTx: ONEAVAX,
-  minConsumption: 0.1,
-  maxConsumption: 0.12,
-  maxStakingDuration: new BN(31536000),
-  maxSupply: new BN(720000000).mul(ONEAVAX),
-  minStake: ONEAVAX,
-  minStakeDuration: 24 * 60 * 60, //one day
-  maxStakeDuration: 365 * 24 * 60 * 60, // one year
-  minDelegationStake: ONEAVAX,
-  minDelegationFee: new BN(2)
-}
-
-const n8C: C = {
-  blockchainID: "2wcJd3HZL4EAoQDfGhyeHGJU55wizganSzD9EvdDLJX3B5u5Be",
-  alias: CChainAlias,
-  vm: CChainVMName,
-  txBytesGas: 1,
-  costPerSignature: 100,
-  gasPrice: GWEI.mul(new BN(225)),
-  minGasPrice: GWEI.mul(new BN(25)),
-  maxGasPrice: GWEI.mul(new BN(1000)),
-  chainID: 7
-}
-// end coston
-
 // start costwo
 avaxAssetID = "fxMAKpBQQpFedrUhWMsDYfCUJxdUw4mneTczKBzNg3rc2JUub"
 const n9X: X = {
@@ -725,15 +676,6 @@ export class Defaults {
       "11111111111111111111111111111111LpoYY": n7P,
       C: n7C,
       umkbhSrjVw5nUvy1eo25AdrjRkPBdtzAMewuxA2rqEx4YMo4c: n7C
-    },
-    7: {
-      hrp: NetworkIDToHRP[7],
-      X: n8X,
-      qG35QGqZ11Mvh8CxCmVVi22juDH3d4GXYFyLeX3W3aWLXWnVb: n8X,
-      P: n8P,
-      "11111111111111111111111111111111LpoYY": n8P,
-      C: n8C,
-      "2wcJd3HZL4EAoQDfGhyeHGJU55wizganSzD9EvdDLJX3B5u5Be": n8C
     },
     114: {
       hrp: NetworkIDToHRP[114],
