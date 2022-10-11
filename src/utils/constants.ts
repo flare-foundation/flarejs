@@ -684,7 +684,7 @@ export class Defaults {
       P: n9P,
       "11111111111111111111111111111111LpoYY": n9P,
       C: n9C,
-      vE8M98mEQH6wk56sStD1ML8HApTgSqfJZLk9gQ3Fsd4i6m3Bi: n9C
+      "vE8M98mEQH6wk56sStD1ML8HApTgSqfJZLk9gQ3Fsd4i6m3Bi": n9C
     }
   }
 }
