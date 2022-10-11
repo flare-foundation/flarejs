@@ -1,9 +1,11 @@
 {
   "name": "@flarenetwork/flarejs",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Flare Platform JS Library",
   "main": "dist/index.js",
-  "files": ["/dist"],
+  "files": [
+    "/dist"
+  ],
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "rm -rf dist/ && npx tsc -b && cp -r typings/src ./dist",
