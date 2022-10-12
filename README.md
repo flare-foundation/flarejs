@@ -2,7 +2,7 @@
 
 ## Overview
 
-FlareJS is a JavaScript Library for interfacing with the Flare Platform. It is built using TypeScript and intended to support both browser and Node.js. The FlareJS library allows you to issue commands to the Flare node APIs.
+FlareJS is a JavaScript Library for interfacing with the Flare Platform. It is built using TypeScript and intended to support both browser and Node.js. The FlareJS library allows you to issue commands to the Flare node APIs. This is an adaptation of the library [avalanchejs](https://github.com/ava-labs/avalanchejs) for Flare network.
 
 The APIs currently supported by default are:
 
@@ -18,9 +18,9 @@ The APIs currently supported by default are:
 * PlatformVM API (P-Chain)
 * Socket
 
-We built FlareJS with ease of use in mind. With this library, any Javascript developer is able to interact with a node on the Flare Platform who has enabled their API endpoints for the developer's consumption. We keep the library up-to-date with the latest changes in the [Flare Platform Specification](https://docs.avax.network).
+We built FlareJS with ease of use in mind. With this library, any Javascript developer is able to interact with a node on the Flare Platform who has enabled their API endpoints for the developer's consumption. We keep the library up-to-date with the latest changes in the [Avalanche Platform Specification](https://docs.avax.network).
 
-  Using FlareJS, developers can:
+Using FlareJS, developers can:
 
 * Locally manage private keys
 * Retrieve balances on addresses
@@ -41,7 +41,7 @@ FlareJS requires Node.js LTS version 14.16.0 or higher to compile.
 
 Flare is available for install via `yarn`:
 
-`yarn add Flare`
+`yarn add @flarenetwork/flare`
 
 You can also pull the repo down directly and build it from scratch:
 
@@ -52,42 +52,41 @@ This will generate a pure Javascript library and place it in a folder named "web
 The FlareJS library can be imported into your existing Node.js project as follows:
 
 ```js
-const Flare = require("Flare")
+const flare = require("@flarenetwork/flarejs")
 ```
 
 Or into your TypeScript project like this:
 
 ```js
-import { Flare } from "Flare"
+import { Avalanche } from "@flarenetwork/flarejs"
 ```
 
 ### Importing essentials
 
 ```js
-import { Flare, BinTools, BN, Buffer } from "Flare"
-
+import { Avalanche, BinTools, BN, Buffer } from "@flarenetwork/flarejs"
 const bintools = BinTools.getInstance()
 ```
 
 The above lines import the libraries used in the tutorials. The libraries include:
 
-* Flare: Our javascript module.
+* Avalanche: Our javascript module.
 * BinTools: A singleton built into FlareJS that is used for dealing with binary data.
 * [BN](https://www.npmjs.com/package/bn.js): A bignumber module use by FlareJS.
 * [Buffer](https://www.npmjs.com/package/buffer): A Buffer library.
 
 ## Example 1 &mdash; Managing X-Chain Keys
 
-FlareJS comes with its own AVM Keychain. This KeyChain is used in the functions of the API, enabling them to sign using keys it's registered. The first step in this process is to create an instance of FlareJS connected to our Flare Platform endpoint of choice.
+FlareJS comes with its own AVM Keychain. This KeyChain is used in the functions of the API, enabling them to sign using keys it's registered. The first step in this process is to create an instance of FlareJS connected to our Flare Platform endpoint of choice. 
+
 
 ```js
-import { Flare, BinTools, Buffer, BN } from "Flare"
+import { Avalanche, BinTools, Buffer, BN } from "@flarenetwork/flarejs"
 
 const bintools = BinTools.getInstance()
-
 const myNetworkID = 12345 //default is 1, we want to override that for our local network
-const Flare = new Flare("localhost", 9650, "http", myNetworkID)
-const xchain = Flare.XChain() //returns a reference to the X-Chain used by FlareJS
+const flare = new Avalanche("localhost", 9650, "http", myNetworkID)
+const xchain = flare.XChain() //returns a reference to the X-Chain used by FlareJS
 ```
 
 ### Accessing the KeyChain
@@ -168,12 +167,12 @@ const isValid = keypair.verify(message, signature) // returns a boolean
 This example creates an asset in the X-Chain and publishes it to the Flare Platform. The first step in this process is to create an instance of FlareJS connected to our Flare Platform endpoint of choice.
 
 ```js
-import { Flare, BinTools, Buffer, BN } from "Flare"
-import { InitialStates, SECPTransferOutput } from "Flare/dist/apis/avm"
+import { Avalanche, BinTools, Buffer, BN } from "@flarenetwork/flarejs"
+import { InitialStates, SECPTransferOutput } from "@flarenetwork/flarejs/dist/apis/avm"
 
 const myNetworkID = 12345 // default is 1, we want to override that for our local network
-const Flare = new Flare("localhost", 9650, "http", myNetworkID)
-const xchain = Flare.XChain() // returns a reference to the X-Chain used by FlareJS
+const flare = new Avalanche("localhost", 9650, "http", myNetworkID)
+const xchain = flare.XChain() // returns a reference to the X-Chain used by FlareJS
 ```
 
 ### Describe the new asset
@@ -291,16 +290,16 @@ The X-Chain uses the TxID of the transaction which created the asset as the uniq
 This example sends an asset in the X-Chain to a single recipient. The first step in this process is to create an instance of Flare connected to our Flare Platform endpoint of choice.
 
 ```js
-import { Flare, BinTools, Buffer, BN } from "Flare"
+import { Avalanche, BinTools, Buffer, BN } from "@flarenetwork/flarejs"
 
 const myNetworkID = 12345 // default is 1, we want to override that for our local network
-const Flare = new Flare.Flare(
+const flare = new Avalanche(
   "localhost",
   9650,
   "http",
   myNetworkID
 )
-const xchain = Flare.XChain() // returns a reference to the X-Chain used by FlareJS
+const xchain = flare.XChain() // returns a reference to the X-Chain used by FlareJS
 ```
 
 We're also assuming that the keystore contains a list of addresses used in this transaction.
@@ -400,7 +399,7 @@ yarn build && yarn test
 ```
 
 If the E2E check does not pass, go into the 'checks' section of the PR.
-`https://github.com/ava-labs/Flarejs/pull/<PR number>/checks`
+`https://github.com/flare-foundation/flarejs/pull/<PR number>/checks`
 
 * Click on the `> E2E` tab on the left
 * Click 'Re-run jobs' on the right
