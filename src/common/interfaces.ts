@@ -5,6 +5,7 @@
 
 import { Buffer } from "buffer/"
 import { SerializedEncoding } from "../utils"
+import BN from "bn.js"
 
 export interface CredsInterface {
   username: string
@@ -64,4 +65,15 @@ export interface Serialized {
   version: number
   notes: string
   fields: object
+}
+
+export interface SignatureRequest {
+  message: string,
+  signer: string
+}
+
+export interface EcdsaSignature {
+  r: BN,
+  s: BN,
+  recoveryParam: number
 }

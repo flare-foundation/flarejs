@@ -6,7 +6,7 @@
 import { Buffer } from "buffer/"
 import BinTools from "../../utils/bintools"
 import { SECP256k1KeyChain, SECP256k1KeyPair } from "../../common/secp256k1"
-import { Serialization, SerializedType } from "../../utils"
+import { Serialization, SerializedType, PrivateKeyPrefix, PublicKeyPrefix } from "../../utils"
 
 /**
  * @ignore
@@ -68,10 +68,14 @@ export class KeyChain extends SECP256k1KeyChain<KeyPair> {
   importKey = (privk: Buffer | string): KeyPair => {
     const keypair: KeyPair = new KeyPair(this.hrp, this.chainID)
     let pk: Buffer
-    if (typeof privk === "string") {
-      pk = bintools.cb58Decode(privk.split("-")[1])
+    if (typeof privk == "string") {
+      if (privk.startsWith(PrivateKeyPrefix)) {
+        pk = bintools.cb58Decode(privk.split("-")[1]);
+      } else if (privk.startsWith(PublicKeyPrefix)) {
+        pk = Buffer.from(privk.split("-")[1], "hex");
+      }
     } else {
-      pk = bintools.copyFrom(privk)
+        pk = bintools.copyFrom(privk as Buffer);
     }
     keypair.importKey(pk)
     if (!(keypair.getAddress().toString("hex") in this.keys)) {

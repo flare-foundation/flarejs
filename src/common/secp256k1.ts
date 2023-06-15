@@ -10,6 +10,7 @@ import { StandardKeyPair, StandardKeyChain } from "./keychain"
 import { PublicKeyError } from "../utils/errors"
 import { BNInput } from "elliptic"
 import { Serialization, SerializedType } from "../utils"
+import { SignatureRequest, EcdsaSignature } from "./interfaces"
 
 /**
  * @ignore
@@ -87,13 +88,20 @@ export abstract class SECP256k1KeyPair extends StandardKeyPair {
    * @returns true on success, false on failure
    */
   importKey(privk: Buffer): boolean {
-    this.keypair = ec.keyFromPrivate(privk.toString("hex"), "hex")
+    const isPrivateKey = (privk.length == 32)
+    if (isPrivateKey) {
+      this.keypair = ec.keyFromPrivate(privk.toString("hex"), "hex")
+    } else {
+      this.keypair = ec.keyFromPublic(privk.toString("hex"), "hex")
+    }
     // doing hex translation to get Buffer class
     try {
-      this.privk = Buffer.from(
-        this.keypair.getPrivate("hex").padStart(64, "0"),
-        "hex"
-      )
+      if (isPrivateKey) {
+        this.privk = Buffer.from(
+          this.keypair.getPrivate("hex").padStart(64, "0"),
+          "hex"
+        )
+      }
       this.pubk = Buffer.from(
         this.keypair.getPublic(true, "hex").padStart(66, "0"),
         "hex"
@@ -185,6 +193,19 @@ export abstract class SECP256k1KeyPair extends StandardKeyPair {
     recovery.writeUInt8(sigObj.recoveryParam, 0)
     const r: Buffer = Buffer.from(sigObj.r.toArray("be", 32)) //we have to skip native Buffer class, so this is the way
     const s: Buffer = Buffer.from(sigObj.s.toArray("be", 32)) //we have to skip native Buffer class, so this is the way
+    const result: Buffer = Buffer.concat([r, s, recovery], 65)
+    return result
+  }
+
+  prepareUnsignedHashes(msg: Buffer, signer: Buffer) {
+    return [<SignatureRequest>{message: msg.toString('hex'), signer: signer.toString('hex')}]
+  }
+
+  signWithRawSignatures(sig: EcdsaSignature) {
+    const recovery: Buffer = Buffer.alloc(1)
+    recovery.writeUInt8(sig.recoveryParam, 0)
+    const r: Buffer = Buffer.from(sig.r.toArray("be", 32)) //we have to skip native Buffer class, so this is the way
+    const s: Buffer = Buffer.from(sig.s.toArray("be", 32)) //we have to skip native Buffer class, so this is the way
     const result: Buffer = Buffer.concat([r, s, recovery], 65)
     return result
   }

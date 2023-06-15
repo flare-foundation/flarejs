@@ -15,7 +15,8 @@ import { EVMBaseTx } from "./basetx"
 import { ImportTx } from "./importtx"
 import { ExportTx } from "./exporttx"
 import { SerializedEncoding } from "../../utils/serialization"
-import { TransactionError } from "../../utils/errors"
+import { EcdsaSignature, SignatureRequest } from "src/common"
+
 
 /**
  * @ignore
@@ -85,6 +86,20 @@ export class UnsignedTx extends EVMStandardUnsignedTx<
     const creds: Credential[] = this.transaction.sign(msg, kc)
     return new Tx(this, creds)
   }
+
+  prepareUnsignedHashes(kc: KeyChain): SignatureRequest[] {
+    const txbuff: Buffer = this.toBuffer()
+    const msg: Buffer = Buffer.from(
+      createHash("sha256").update(txbuff).digest()
+    )
+    return this.transaction.prepareUnsignedHashes(msg, kc)
+  }
+
+  signWithRawSignatures(sigs: EcdsaSignature[], kc: KeyChain): Tx {
+    const creds: Credential[] = this.transaction.signWithRawSignatures(sigs, kc)
+    return new Tx(this, creds)
+  }
+
 }
 
 export class Tx extends EVMStandardTx<KeyPair, KeyChain, UnsignedTx> {

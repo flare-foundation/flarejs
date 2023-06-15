@@ -6,6 +6,7 @@
 import BN from "bn.js"
 
 export const PrivateKeyPrefix: string = "PrivateKey-"
+export const PublicKeyPrefix: string = "PublicKey-"
 export const NodeIDPrefix: string = "NodeID-"
 export const PrimaryAssetAlias: string = "AVAX"
 export const MainnetAPI: string = "api.avax.network"
