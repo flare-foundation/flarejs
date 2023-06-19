@@ -17,7 +17,7 @@ import { SerializedEncoding } from "../../utils/serialization"
 import { AddDelegatorTx, AddValidatorTx } from "./validationtx"
 import { CreateSubnetTx } from "./createsubnettx"
 import { TransactionError } from "../../utils/errors"
-import { EcdsaSignature, SignatureRequest } from "src/common"
+import { EcdsaSignature, SignatureRequest } from "../../common"
 
 /**
  * @ignore

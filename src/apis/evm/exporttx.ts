@@ -18,7 +18,7 @@ import {
   EVMInputError,
   TransferableOutputError
 } from "../../utils/errors"
-import { SignatureRequest, EcdsaSignature } from "src/common"
+import { SignatureRequest, EcdsaSignature } from "../../common"
 
 
 /**

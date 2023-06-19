@@ -15,7 +15,7 @@ import { EVMBaseTx } from "./basetx"
 import { ImportTx } from "./importtx"
 import { ExportTx } from "./exporttx"
 import { SerializedEncoding } from "../../utils/serialization"
-import { EcdsaSignature, SignatureRequest } from "src/common"
+import { EcdsaSignature, SignatureRequest } from "../../common"
 
 
 /**

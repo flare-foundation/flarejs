@@ -11,7 +11,7 @@ import { Credential } from "../../common/credentials"
 import { DefaultNetworkID } from "../../utils/constants"
 import { SelectTxClass } from "./tx"
 import { SerializedEncoding } from "../../utils/serialization"
-import { EcdsaSignature, SignatureRequest } from "src/common"
+import { EcdsaSignature, SignatureRequest } from "../../common"
 
 /**
  * @ignore
