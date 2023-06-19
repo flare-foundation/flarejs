@@ -17,6 +17,7 @@ import { SerializedEncoding } from "../../utils/serialization"
 import { AddDelegatorTx, AddValidatorTx } from "./validationtx"
 import { CreateSubnetTx } from "./createsubnettx"
 import { TransactionError } from "../../utils/errors"
+import { EcdsaSignature, SignatureRequest } from "src/common"
 
 /**
  * @ignore
@@ -88,6 +89,19 @@ export class UnsignedTx extends StandardUnsignedTx<KeyPair, KeyChain, BaseTx> {
       createHash("sha256").update(txbuff).digest()
     )
     const creds: Credential[] = this.transaction.sign(msg, kc)
+    return new Tx(this, creds)
+  }
+
+  prepareUnsignedHashes(kc: KeyChain): SignatureRequest[] {
+    const txbuff: Buffer = this.toBuffer()
+    const msg: Buffer = Buffer.from(
+      createHash("sha256").update(txbuff).digest()
+    )
+    return this.transaction.prepareUnsignedHashes(msg, kc)
+  }
+
+  signWithRawSignatures(sigs: EcdsaSignature[], kc: KeyChain): Tx {
+    const creds: Credential[] = this.transaction.signWithRawSignatures(sigs, kc)
     return new Tx(this, creds)
   }
 }

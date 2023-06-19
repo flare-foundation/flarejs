@@ -186,6 +186,8 @@ export abstract class SECP256k1KeyPair extends StandardKeyPair {
    * @returns A {@link https://github.com/feross/buffer|Buffer} containing the signature
    */
   sign(msg: Buffer): Buffer {
+    console.log(msg.toString('hex'))
+    console.log(this.keypair.getPublic().getX().toString(16))
     const sigObj: elliptic.ec.Signature = this.keypair.sign(msg, undefined, {
       canonical: true
     })

@@ -483,7 +483,7 @@ const n6P: P = {
 }
 
 const n6C: C = {
-  blockchainID: "XXxqsUPAm5EU7PhesFidC1guJa9jpf2jMq5bvKpco7QCQ5gpW",
+  blockchainID: "2DMeTG89jJGhDBdf1oPmPGqRtdZF8qq4zxmSH7CzoyXXt2bRtU",
   alias: CChainAlias,
   vm: CChainVMName,
   txBytesGas: 1,
@@ -667,7 +667,7 @@ export class Defaults {
       P: n6P,
       "11111111111111111111111111111111LpoYY": n6P,
       C: n6C,
-      XXxqsUPAm5EU7PhesFidC1guJa9jpf2jMq5bvKpco7QCQ5gpW: n6C
+      "2DMeTG89jJGhDBdf1oPmPGqRtdZF8qq4zxmSH7CzoyXXt2bRtU": n6C
     },
     14: {
       hrp: NetworkIDToHRP[14],

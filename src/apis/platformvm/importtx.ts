@@ -14,6 +14,7 @@ import { BaseTx } from "./basetx"
 import { DefaultNetworkID } from "../../utils/constants"
 import { Serialization, SerializedEncoding } from "../../utils/serialization"
 import { ChainIdError, TransferableInputError } from "../../utils/errors"
+import { EcdsaSignature, SignatureRequest } from "src/common"
 
 /**
  * @ignore
@@ -143,6 +144,41 @@ export class ImportTx extends BaseTx {
       for (let j: number = 0; j < sigidxs.length; j++) {
         const keypair: KeyPair = kc.getKey(sigidxs[`${j}`].getSource())
         const signval: Buffer = keypair.sign(msg)
+        const sig: Signature = new Signature()
+        sig.fromBuffer(signval)
+        cred.addSignature(sig)
+      }
+      creds.push(cred)
+    }
+    return creds
+  }
+
+  prepareUnsignedHashes(msg: Buffer, kc: KeyChain): SignatureRequest[] {
+    const reqs: SignatureRequest[] = super.prepareUnsignedHashes(msg, kc)
+    for (let i: number = 0; i < this.importIns.length; i++) {
+      const sigidxs: SigIdx[] = this.importIns[`${i}`].getInput().getSigIdxs()
+      for (let j: number = 0; j < sigidxs.length; j++) {
+        const source: Buffer = sigidxs[`${j}`].getSource()
+        reqs.push(<SignatureRequest>{
+          message: msg.toString('hex'),
+          signer: source.toString('hex')
+        })
+      }
+    }
+    return reqs
+  }
+
+  signWithRawSignatures(signatures: EcdsaSignature[], kc: KeyChain): Credential[] {
+    const creds: Credential[] = super.signWithRawSignatures(signatures, kc)
+    for (let i: number = 0; i < this.importIns.length; i++) {
+      const cred: Credential = SelectCredentialClass(
+        this.importIns[`${i}`].getInput().getCredentialID()
+      )
+      const sigidxs: SigIdx[] = this.importIns[`${i}`].getInput().getSigIdxs()
+      for (let j: number = 0; j < sigidxs.length; j++) {
+        const ecdsaSig: EcdsaSignature = signatures.shift()
+        const keypair: KeyPair = kc.getKey(sigidxs[`${j}`].getSource())
+        const signval: Buffer = keypair.signWithRawSignatures(ecdsaSig)
         const sig: Signature = new Signature()
         sig.fromBuffer(signval)
         cred.addSignature(sig)

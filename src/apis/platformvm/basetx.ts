@@ -14,6 +14,7 @@ import { Signature, SigIdx, Credential } from "../../common/credentials"
 import { DefaultNetworkID } from "../../utils/constants"
 import { SelectTxClass } from "../platformvm/tx"
 import { SerializedEncoding } from "../../utils/serialization"
+import { EcdsaSignature, SignatureRequest } from "src/common"
 
 /**
  * @ignore
@@ -124,6 +125,41 @@ export class BaseTx extends StandardBaseTx<KeyPair, KeyChain> {
       for (let j: number = 0; j < sigidxs.length; j++) {
         const keypair: KeyPair = kc.getKey(sigidxs[`${j}`].getSource())
         const signval: Buffer = keypair.sign(msg)
+        const sig: Signature = new Signature()
+        sig.fromBuffer(signval)
+        cred.addSignature(sig)
+      }
+      creds.push(cred)
+    }
+    return creds
+  }
+
+  prepareUnsignedHashes(msg: Buffer, kc: KeyChain): SignatureRequest[] {
+    const reqs: SignatureRequest[] = []
+    for (let i: number = 0; i < this.ins.length; i++) {
+      const sigidxs: SigIdx[] = this.ins[`${i}`].getInput().getSigIdxs()
+      for (let j: number = 0; j < sigidxs.length; j++) {
+        const source: Buffer = sigidxs[`${j}`].getSource()
+        reqs.push(<SignatureRequest>{
+          message: msg.toString('hex'),
+          signer: source.toString('hex')
+        })
+      }
+    }
+    return reqs
+  }
+
+  signWithRawSignatures(signatures: EcdsaSignature[], kc: KeyChain): Credential[] {
+    const creds: Credential[] = []
+    for (let i: number = 0; i < this.ins.length; i++) {
+      const cred: Credential = SelectCredentialClass(
+        this.ins[`${i}`].getInput().getCredentialID()
+      )
+      const sigidxs: SigIdx[] = this.ins[`${i}`].getInput().getSigIdxs()
+      for (let j: number = 0; j < sigidxs.length; j++) {
+        const ecdsaSig: EcdsaSignature = signatures.shift()
+        const keypair: KeyPair = kc.getKey(sigidxs[`${j}`].getSource())
+        const signval: Buffer = keypair.signWithRawSignatures(ecdsaSig)
         const sig: Signature = new Signature()
         sig.fromBuffer(signval)
         cred.addSignature(sig)
