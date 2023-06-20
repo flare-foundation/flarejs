@@ -11,6 +11,7 @@ import { Credential } from "../../common/credentials"
 import { DefaultNetworkID } from "../../utils/constants"
 import { SelectTxClass } from "./tx"
 import { SerializedEncoding } from "../../utils/serialization"
+import { EcdsaSignature, SignatureRequest } from "../../common"
 
 /**
  * @ignore
@@ -63,6 +64,16 @@ export class EVMBaseTx extends EVMStandardBaseTx<KeyPair, KeyChain> {
    * @returns An array of [[Credential]]s
    */
   sign(msg: Buffer, kc: KeyChain): Credential[] {
+    const creds: Credential[] = []
+    return creds
+  }
+
+  prepareUnsignedHashes(msg: Buffer, kc: KeyChain): SignatureRequest[]  {
+    const requests: SignatureRequest[] = []
+    return requests
+  }
+
+  signWithRawSignatures(signatures: EcdsaSignature[], kc: KeyChain): Credential[] {
     const creds: Credential[] = []
     return creds
   }

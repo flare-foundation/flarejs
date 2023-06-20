@@ -16,6 +16,7 @@ import {
   SerializedEncoding,
   SerializedType
 } from "../utils/serialization"
+import { EcdsaSignature, SignatureRequest } from "./interfaces"
 
 /**
  * @ignore

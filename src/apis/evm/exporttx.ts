@@ -18,6 +18,8 @@ import {
   EVMInputError,
   TransferableOutputError
 } from "../../utils/errors"
+import { SignatureRequest, EcdsaSignature } from "../../common"
+
 
 /**
  * @ignore
@@ -223,4 +225,38 @@ export class ExportTx extends EVMBaseTx {
       this.exportedOutputs = exportedOutputs
     }
   }
+
+  prepareUnsignedHashes(msg: Buffer, kc: KeyChain): SignatureRequest[] {
+    const sigreqs: SignatureRequest[] = super.prepareUnsignedHashes(msg, kc)
+    this.inputs.forEach((input: EVMInput) => {
+      const sigidxs: SigIdx[] = input.getSigIdxs()
+      sigidxs.forEach((sigidx: SigIdx) => {
+        const source: Buffer = sigidx.getSource()
+        sigreqs.push(<SignatureRequest>{
+          message: msg.toString('hex'),
+          signer: source.toString('hex')
+        })
+      })
+    })
+    return sigreqs
+  }
+
+  signWithRawSignatures(signatures: EcdsaSignature[], kc: KeyChain): Credential[] {
+    const creds: Credential[] = super.signWithRawSignatures(signatures, kc)
+    this.inputs.forEach((input: EVMInput) => {
+      const cred: Credential = SelectCredentialClass(input.getCredentialID())
+      const sigidxs: SigIdx[] = input.getSigIdxs()
+      sigidxs.forEach((sigidx: SigIdx) => {
+        const ecdsaSig: EcdsaSignature = signatures.shift()
+        const keypair: KeyPair = kc.getKey(sigidx.getSource())
+        const signval: Buffer = keypair.signWithRawSignatures(ecdsaSig)
+        const sig: Signature = new Signature()
+        sig.fromBuffer(signval)
+        cred.addSignature(sig)
+      })
+      creds.push(cred)
+    })
+    return creds
+  }
+
 }
