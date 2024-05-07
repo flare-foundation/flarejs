@@ -79,6 +79,8 @@ export const NetworkIDToHRP: object = {
   162: "localflare",
   14: "flare",
   114: "costwo",
+  16: "coston",
+  19: "songbird"
 }
 
 export const HRPToNetworkID: object = {
@@ -93,6 +95,8 @@ export const HRPToNetworkID: object = {
   localflare: 162,
   flare: 14,
   costwo: 114,
+  coston: 16,
+  songbird: 19
 }
 
 export const NetworkIDToNetworkNames: object = {
@@ -107,6 +111,8 @@ export const NetworkIDToNetworkNames: object = {
   162: ["Local Flare"],
   14: ["Flare"],
   114: ["Coston 2"],
+  16: ["Coston"],
+  19: ["Songbird"]
 }
 
 export const NetworkNameToNetworkID: object = {
@@ -125,6 +131,8 @@ export const NetworkNameToNetworkID: object = {
   "Local Flare": 162,
   "Flare": 14,
   "Costwo": 114,
+  Coston: 16,
+  Songbird: 19
 }
 
 export const FallbackHRP: string = "custom"
@@ -586,6 +594,95 @@ const n9C: C = {
 }
 // end costwo
 
+// start coston
+avaxAssetID = "sMWvCcweHFoG4SE1SSVtiwosqezUW8tAA77t7BhAS7RUh6ms4"
+const n10X: X = {
+  blockchainID: "8S5vg8ycMqULMMq2CzrRh3qqbFWjs6a35H8UwNAaS83v9Ynxa",
+  avaxAssetID: avaxAssetID,
+  alias: XChainAlias,
+  vm: XChainVMName,
+  txFee: MILLIAVAX,
+  creationTxFee: CENTIAVAX,
+  mintTxFee: MILLIAVAX
+}
+
+const n10P: P = {
+  blockchainID: PlatformChainID,
+  avaxAssetID: avaxAssetID,
+  alias: PChainAlias,
+  vm: PChainVMName,
+  txFee: MILLIAVAX,
+  creationTxFee: CENTIAVAX,
+  createSubnetTx: ONEAVAX,
+  createChainTx: ONEAVAX,
+  minConsumption: 0.1,
+  maxConsumption: 0.12,
+  maxStakingDuration: new BN(31536000),
+  maxSupply: new BN(720000000).mul(ONEAVAX),
+  minStake: ONEAVAX,
+  minStakeDuration: 24 * 60 * 60, //one day
+  maxStakeDuration: 365 * 24 * 60 * 60, // one year
+  minDelegationStake: ONEAVAX,
+  minDelegationFee: new BN(2)
+}
+const n10C: C = {
+  // blockchainID is sometimes referred to as chainID (it's confusing)
+  blockchainID: "2wcJd3HZL4EAoQDfGhyeHGJU55wizganSzD9EvdDLJX3B5u5Be",
+  alias: CChainAlias,
+  vm: CChainVMName,
+  txBytesGas: 1,
+  costPerSignature: 100,
+  gasPrice: GWEI.mul(new BN(225)),
+  minGasPrice: GWEI.mul(new BN(25)),
+  maxGasPrice: GWEI.mul(new BN(1000)),
+  chainID: 16
+}
+// end coston
+
+// start songbird
+avaxAssetID = "1S3PSi4VsVpD8iK2vdykuajxVeuCV2xhjPSkQ4K88mqWGozMP"
+const n11X: X = {
+  blockchainID: "7xKYhEvYuUekwDxozgEiMPufzJ3jJPypKbGE8ny6KL84z4RKB",
+  avaxAssetID: avaxAssetID,
+  alias: XChainAlias,
+  vm: XChainVMName,
+  txFee: MILLIAVAX,
+  creationTxFee: CENTIAVAX,
+  mintTxFee: MILLIAVAX
+}
+const n11P: P = {
+  blockchainID: PlatformChainID,
+  avaxAssetID: avaxAssetID,
+  alias: PChainAlias,
+  vm: PChainVMName,
+  txFee: MILLIAVAX,
+  creationTxFee: CENTIAVAX,
+  createSubnetTx: ONEAVAX,
+  createChainTx: ONEAVAX,
+  minConsumption: 0.1,
+  maxConsumption: 0.12,
+  maxStakingDuration: new BN(31536000),
+  maxSupply: new BN(720000000).mul(ONEAVAX),
+  minStake: ONEAVAX,
+  minStakeDuration: 24 * 60 * 60, //one day
+  maxStakeDuration: 365 * 24 * 60 * 60, // one year
+  minDelegationStake: ONEAVAX,
+  minDelegationFee: new BN(2)
+}
+const n11C: C = {
+  // blockchainID is sometimes referred to as chainID (it's confusing)
+  blockchainID: "erCt5pSo5d4bM8fMrsB2dRM54PGssDAVqRg1jHedQzr6ayLiq",
+  alias: CChainAlias,
+  vm: CChainVMName,
+  txBytesGas: 1,
+  costPerSignature: 100,
+  gasPrice: GWEI.mul(new BN(225)),
+  minGasPrice: GWEI.mul(new BN(25)),
+  maxGasPrice: GWEI.mul(new BN(1000)),
+  chainID: 16
+}
+// end songbird
+
 export class Defaults {
   static network: Networks = {
     0: {
@@ -686,6 +783,24 @@ export class Defaults {
       "11111111111111111111111111111111LpoYY": n9P,
       C: n9C,
       "vE8M98mEQH6wk56sStD1ML8HApTgSqfJZLk9gQ3Fsd4i6m3Bi": n9C
+    },
+    16: {
+      hrp: NetworkIDToHRP[16],
+      X: n10X,
+      "8S5vg8ycMqULMMq2CzrRh3qqbFWjs6a35H8UwNAaS83v9Ynxa": n10X,
+      P: n10P,
+      "11111111111111111111111111111111LpoYY": n10P,
+      C: n10C,
+      "2wcJd3HZL4EAoQDfGhyeHGJU55wizganSzD9EvdDLJX3B5u5Be": n10C
+    },
+    19: {
+      hrp: NetworkIDToHRP[19],
+      X: n11X,
+      "7xKYhEvYuUekwDxozgEiMPufzJ3jJPypKbGE8ny6KL84z4RKB": n11X,
+      P: n11P,
+      "11111111111111111111111111111111LpoYY": n11P,
+      C: n11C,
+      "erCt5pSo5d4bM8fMrsB2dRM54PGssDAVqRg1jHedQzr6ayLiq": n11C
     }
   }
 }
