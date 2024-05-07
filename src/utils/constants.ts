@@ -605,7 +605,6 @@ const n10X: X = {
   creationTxFee: CENTIAVAX,
   mintTxFee: MILLIAVAX
 }
-
 const n10P: P = {
   blockchainID: PlatformChainID,
   avaxAssetID: avaxAssetID,
@@ -679,7 +678,7 @@ const n11C: C = {
   gasPrice: GWEI.mul(new BN(225)),
   minGasPrice: GWEI.mul(new BN(25)),
   maxGasPrice: GWEI.mul(new BN(1000)),
-  chainID: 16
+  chainID: 19
 }
 // end songbird
 
