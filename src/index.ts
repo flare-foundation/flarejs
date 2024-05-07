@@ -96,9 +96,9 @@ export default class Avalanche extends AvalancheCore {
    * ex: "http", "https", "git", "ws", etc. Defaults to http
    * @param networkID Sets the NetworkID of the class. Default [[DefaultNetworkID]]
    * @param XChainID Sets the blockchainID for the AVM. Will try to auto-detect,
-   * otherwise default "2eNy1mUFdmaxXNj1eQHUe7Np4gju9sJsEtWQ4MX3ToiNKuADed"
+   * otherwise default "ALRkp1tuy7ErVkWuEWFLVd657JAULWDDyQkQBkLKVE94jCaNu"
    * @param CChainID Sets the blockchainID for the EVM. Will try to auto-detect,
-   * otherwise default "2CA6j5zYzasynPsFeNoqWkmTCt3VScMvXUZHbfDJ8k3oGzAPtU"
+   * otherwise default "qNigBiF2gjcLWf8Zguzi1ztr2nJ87Z7bWwbDzWBJvuwuhvBkX"
    * @param hrp The human-readable part of the bech32 addresses
    * @param skipinit Skips creating the APIs. Defaults to false
    */

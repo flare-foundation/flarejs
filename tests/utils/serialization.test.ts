@@ -45,7 +45,7 @@ describe("Serialization", (): void => {
   const nodeID: string = "NodeID-MFrZFVCXPv5iCn6M9K6XduxGTYp891xXZ"
   const privateKey: string =
     "PrivateKey-ewoqjP7PxY4yr3iLTpLisriqt94hdyDFNgchSxGGztUrTXtNN"
-  const cb58: string = "2eNy1mUFdmaxXNj1eQHUe7Np4gju9sJsEtWQ4MX3ToiNKuADed"
+  const cb58: string = "ALRkp1tuy7ErVkWuEWFLVd657JAULWDDyQkQBkLKVE94jCaNu"
   const base64: string = "ZnJvbSBzbm93Zmxha2UgdG8gQXZhbGFuY2hl"
   const hex: string = "66726f6d20736e6f77666c616b6520746f204176616c616e636865"
   const decimalString: string = "12345"
@@ -319,7 +319,7 @@ describe("Serialization", (): void => {
       "66726f6d20736e6f77666c616b6520746f206176616c616e636865"
     const memo: Buffer = serialization.typeToBuffer(m, "cb58")
     const cChainID: string =
-      "2CA6j5zYzasynPsFeNoqWkmTCt3VScMvXUZHbfDJ8k3oGzAPtU"
+      "qNigBiF2gjcLWf8Zguzi1ztr2nJ87Z7bWwbDzWBJvuwuhvBkX"
     const cChainIDHex: string =
       "9d0775f450604bd2fbc49ce0c5c1c6dfeb2dc2acb8c92c26eeae6e6df4502b19"
     const hex: SerializedEncoding = "hex"

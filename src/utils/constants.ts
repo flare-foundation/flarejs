@@ -75,12 +75,12 @@ export const NetworkIDToHRP: object = {
   4: "everest",
   5: "fuji",
   1337: "custom",
-  12345: "local",
+  4294967295: "local",
   162: "localflare",
   14: "flare",
   114: "costwo",
   16: "coston",
-  19: "songbird"
+  19: "songbird",
 }
 
 export const HRPToNetworkID: object = {
@@ -91,7 +91,7 @@ export const HRPToNetworkID: object = {
   everest: 4,
   fuji: 5,
   custom: 1337,
-  local: 12345,
+  local: 4294967295,
   localflare: 162,
   flare: 14,
   costwo: 114,
@@ -107,7 +107,7 @@ export const NetworkIDToNetworkNames: object = {
   4: ["Everest"],
   5: ["Fuji", "Testnet"],
   1337: ["Custom Network"],
-  12345: ["Local Network"],
+  4294967295: ["Local Network"],
   162: ["Local Flare"],
   14: ["Flare"],
   114: ["Coston 2"],
@@ -126,8 +126,8 @@ export const NetworkNameToNetworkID: object = {
   Testnet: 5,
   Custom: 1337,
   "Custom Network": 1337,
-  Local: 12345,
-  "Local Network": 12345,
+  Local: 4294967295,
+  "Local Network": 4294967295,
   "Local Flare": 162,
   "Flare": 14,
   "Costwo": 114,
@@ -446,16 +446,16 @@ n1337C.chainID = 43112
 // End custom network
 
 // Start local network
-avaxAssetID = "2fombhL7aGPwj3KH4bfrmJwW6PVnMobf9Y2fn9GwxiAAJyFDbe"
-const n12345X: X = { ...n5X }
-n12345X.blockchainID = "2eNy1mUFdmaxXNj1eQHUe7Np4gju9sJsEtWQ4MX3ToiNKuADed"
-n12345X.avaxAssetID = avaxAssetID
-const n12345P: P = { ...n5P }
-n12345P.blockchainID = PlatformChainID
-const n12345C: C = { ...n5C }
-n12345C.blockchainID = "2CA6j5zYzasynPsFeNoqWkmTCt3VScMvXUZHbfDJ8k3oGzAPtU"
-n12345C.avaxAssetID = avaxAssetID
-n12345C.chainID = 43112
+avaxAssetID = "2RULRJVXVpQNAsV3sBpy4G8LWH1LN3z5Adokv5bVtnZmsBQDCX"
+const n4294967295X: X = { ...n5X }
+n4294967295X.blockchainID = "ALRkp1tuy7ErVkWuEWFLVd657JAULWDDyQkQBkLKVE94jCaNu"
+n4294967295X.avaxAssetID = avaxAssetID
+const n4294967295P: P = { ...n5P }
+n4294967295P.blockchainID = PlatformChainID
+const n4294967295C: C = { ...n5C }
+n4294967295C.blockchainID = "qNigBiF2gjcLWf8Zguzi1ztr2nJ87Z7bWwbDzWBJvuwuhvBkX"
+n4294967295C.avaxAssetID = avaxAssetID
+n4294967295C.chainID = 4294967295
 // End local network
 
 // Start local flare
@@ -747,14 +747,14 @@ export class Defaults {
       C: n1337C,
       BR28ypgLATNS6PbtHMiJ7NQ61vfpT27Hj8tAcZ1AHsfU5cz88: n1337C
     },
-    12345: {
-      hrp: NetworkIDToHRP[12345],
-      X: n12345X,
-      "2eNy1mUFdmaxXNj1eQHUe7Np4gju9sJsEtWQ4MX3ToiNKuADed": n12345X,
-      P: n12345P,
-      "11111111111111111111111111111111LpoYY": n12345P,
-      C: n12345C,
-      "2CA6j5zYzasynPsFeNoqWkmTCt3VScMvXUZHbfDJ8k3oGzAPtU": n12345C
+    4294967295: {
+      hrp: NetworkIDToHRP[4294967295],
+      X: n4294967295X,
+      "ALRkp1tuy7ErVkWuEWFLVd657JAULWDDyQkQBkLKVE94jCaNu": n4294967295X,
+      P: n4294967295P,
+      "11111111111111111111111111111111LpoYY": n4294967295P,
+      C: n4294967295C,
+      "qNigBiF2gjcLWf8Zguzi1ztr2nJ87Z7bWwbDzWBJvuwuhvBkX": n4294967295C
     },
     162: {
       hrp: NetworkIDToHRP[162],
