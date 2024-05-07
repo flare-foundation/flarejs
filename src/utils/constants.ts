@@ -73,14 +73,14 @@ export const NetworkIDToHRP: object = {
   2: "cascade",
   3: "denali",
   4: "everest",
-  5: "fuji",
+  // 5: "fuji",
   1337: "custom",
   4294967295: "local",
   162: "localflare",
   14: "flare",
   114: "costwo",
-  16: "coston",
-  19: "songbird",
+  7: "coston",
+  5: "songbird",
 }
 
 export const HRPToNetworkID: object = {
@@ -95,8 +95,8 @@ export const HRPToNetworkID: object = {
   localflare: 162,
   flare: 14,
   costwo: 114,
-  coston: 16,
-  songbird: 19
+  coston: 7,
+  songbird: 5
 }
 
 export const NetworkIDToNetworkNames: object = {
@@ -105,14 +105,14 @@ export const NetworkIDToNetworkNames: object = {
   2: ["Cascade"],
   3: ["Denali"],
   4: ["Everest"],
-  5: ["Fuji", "Testnet"],
+  // 5: ["Fuji", "Testnet"],
   1337: ["Custom Network"],
   4294967295: ["Local Network"],
   162: ["Local Flare"],
   14: ["Flare"],
   114: ["Coston 2"],
-  16: ["Coston"],
-  19: ["Songbird"]
+  7: ["Coston"],
+  5: ["Songbird"]
 }
 
 export const NetworkNameToNetworkID: object = {
@@ -131,8 +131,8 @@ export const NetworkNameToNetworkID: object = {
   "Local Flare": 162,
   "Flare": 14,
   "Costwo": 114,
-  Coston: 16,
-  Songbird: 19
+  Coston: 7,
+  Songbird: 5
 }
 
 export const FallbackHRP: string = "custom"
@@ -729,15 +729,15 @@ export class Defaults {
       C: n4C,
       saMG5YgNsFxzjz4NMkEkt3bAH6hVxWdZkWcEnGB3Z15pcAmsK: n4C
     },
-    5: {
-      hrp: NetworkIDToHRP[5],
-      X: n5X,
-      "2JVSBoinj9C2J33VntvzYtVJNZdN2NKiwwKjcumHUWEb5DbBrm": n5X,
-      P: n5P,
-      "11111111111111111111111111111111LpoYY": n5P,
-      C: n5C,
-      yH8D7ThNJkxmtkuv2jgBa4P1Rn3Qpr4pPr7QYNfcdoS6k6HWp: n5C
-    },
+    // 5: {
+    //   hrp: NetworkIDToHRP[5],
+    //   X: n5X,
+    //   "2JVSBoinj9C2J33VntvzYtVJNZdN2NKiwwKjcumHUWEb5DbBrm": n5X,
+    //   P: n5P,
+    //   "11111111111111111111111111111111LpoYY": n5P,
+    //   C: n5C,
+    //   yH8D7ThNJkxmtkuv2jgBa4P1Rn3Qpr4pPr7QYNfcdoS6k6HWp: n5C
+    // },
     1337: {
       hrp: NetworkIDToHRP[1337],
       X: n1337X,
@@ -783,8 +783,8 @@ export class Defaults {
       C: n9C,
       "vE8M98mEQH6wk56sStD1ML8HApTgSqfJZLk9gQ3Fsd4i6m3Bi": n9C
     },
-    16: {
-      hrp: NetworkIDToHRP[16],
+    7: {
+      hrp: NetworkIDToHRP[7],
       X: n10X,
       "8S5vg8ycMqULMMq2CzrRh3qqbFWjs6a35H8UwNAaS83v9Ynxa": n10X,
       P: n10P,
@@ -792,8 +792,8 @@ export class Defaults {
       C: n10C,
       "2wcJd3HZL4EAoQDfGhyeHGJU55wizganSzD9EvdDLJX3B5u5Be": n10C
     },
-    19: {
-      hrp: NetworkIDToHRP[19],
+    5: {
+      hrp: NetworkIDToHRP[5],
       X: n11X,
       "7xKYhEvYuUekwDxozgEiMPufzJ3jJPypKbGE8ny6KL84z4RKB": n11X,
       P: n11P,
