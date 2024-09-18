@@ -4,7 +4,7 @@
  */
 import axios, {
   AxiosRequestConfig,
-  AxiosRequestHeaders,
+  RawAxiosRequestHeaders,
   AxiosResponse,
   Method
 } from "axios"
@@ -224,7 +224,7 @@ export default class AvalancheCore {
     this.auth = auth
   }
 
-  protected _setHeaders = (headers: any): AxiosRequestHeaders => {
+  protected _setHeaders = (headers: any): RawAxiosRequestHeaders => {
     if (typeof this.headers === "object") {
       for (const [key, value] of Object.entries(this.headers)) {
         headers[`${key}`] = value
@@ -289,7 +289,7 @@ export default class AvalancheCore {
     baseurl: string,
     getdata: object,
     postdata: string | object | ArrayBuffer | ArrayBufferView,
-    headers: AxiosRequestHeaders = {},
+    headers: RawAxiosRequestHeaders = {},
     axiosConfig: AxiosRequestConfig = undefined
   ): Promise<RequestResponseData> => {
     let config: AxiosRequestConfig
