@@ -1,6 +1,6 @@
-import { AxiosRequestConfig, AxiosResponse, AxiosError } from "axios"
+import { InternalAxiosRequestConfig, AxiosResponse, AxiosError } from "axios"
 
-function createRequest(config: AxiosRequestConfig): Request {
+function createRequest(config: InternalAxiosRequestConfig): Request {
   const headers = new Headers(config.headers as Record<string, string>)
 
   if (config.auth) {
@@ -83,7 +83,7 @@ async function getResponse(request, config): Promise<AxiosResponse> {
 }
 
 export async function fetchAdapter(
-  config: AxiosRequestConfig
+  config: InternalAxiosRequestConfig
 ): Promise<AxiosResponse> {
   const request = createRequest(config)
 

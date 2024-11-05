@@ -39,7 +39,7 @@ FlareJS requires Node.js LTS version 14.16.0 or higher to compile.
 
 ### Installation
 
-Flare is available for install via `yarn`:
+FlareJS is available for install via `yarn`:
 
 `yarn add @flarenetwork/flarejs`
 
