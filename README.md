@@ -1,3 +1,6 @@
+# DEPRECATION
+This repo was deprecated in favor of [flare-js](https://github.com/flare-foundation/flare-js).
+
 # FlareJS - The Flare Platform JavaScript Library
 
 ## Overview
