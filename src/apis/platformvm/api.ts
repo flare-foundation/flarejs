@@ -491,7 +491,7 @@ export class PlatformVMAPI extends JRPCAPI {
       )
     }
     const params: any = {
-      address
+      addresses: [address]
     }
     const response: RequestResponseData = await this.callMethod(
       "platform.getBalance",
